@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, View, ScrollView } from "react-native";
 import { useThemeStore } from "../store/useThemeStore";
 import { useTransactionStore } from "../store/useTransactionStore";
 import { useRouter } from "expo-router";
+
 
 const CATEGORIES = ["Food", "Rent", "Transport", "Bills", "Fun", "Other"];
 
@@ -68,7 +69,42 @@ export default function AddTransaction() {
         className="border border-gray-300 dark:border-gray-700 rounded-lg p-3 mb-3 text-black dark:text-white"
       />
 
-      <View className="flex-row flex-wrap gap-2 mb-3">
+        <ScrollView
+          horizontal
+          showsVerticalScrollIndicator={false} persistentScrollbar={false}>
+            <View className="flex-row flex-wrap gap-2 mb-3">
+              {/*.map is an array method that loops over each item in the array. It returns a new array. c represents one item from the CATEGORIES array. */} 
+              {CATEGORIES.map((c) => (
+                <Pressable
+                  key={c}
+                  onPress={() => setCategory(c)}
+                  className={`px-3 py-2 rounded-full border ${
+                    category === c
+                      ? "bg-blue-500 border-blue-500"
+                      : "border-gray-400 dark:border-gray-600"
+                  }`}
+                >
+                  <Text
+                    className={
+                      category === c
+                        ? "text-white font-semibold"
+                        : "text-black dark:text-white"
+                    }
+                  >
+                    {c}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </ScrollView>
+
+      <TextInput
+            placeholder={type === "income" ? `${errornote}` : "Note (optional)"}
+            placeholderTextColor={type === "income" && errornote ? "#e57373" : placeholderColor}
+            value={note}
+            onChangeText={(text) => {
+              <View className="flex-row flex-wrap gap-2 mb-3">
+         {/*It removes any character from "TextInput" that is NOT a letter, number, space, or basic punctuation.. */} 
         {CATEGORIES.map((c) => (
           <Pressable
             key={c}
@@ -91,12 +127,6 @@ export default function AddTransaction() {
           </Pressable>
         ))}
       </View>
-
-      <TextInput
-            placeholder={type === "income" ? `${errornote}` : "Note (optional)"}
-            placeholderTextColor={type === "income" && errornote ? "#e57373" : placeholderColor}
-            value={note}
-            onChangeText={(text) => {
             const cleaned = text.replace(/[^a-zA-Z0-9 .,!?'-]/g, "");
             setNote(cleaned);
               }}

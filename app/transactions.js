@@ -25,10 +25,15 @@ export default function TransactionsScreen() {
 
       <FlatList
         data={transactions}
+
+         /* Gives each list item a unique key*/ 
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <TransactionItem item={item} />}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 30 }}
+
+         
+          /*ListEmptyComponent={...}, Displays only when transactions is empty */
         ListEmptyComponent={
           <Text className="text-gray-500 dark:text-gray-400 mt-6">
             No transactions yet.

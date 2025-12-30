@@ -53,10 +53,15 @@ export default function HomeScreen() {
   const [selectedMonth, setSelectedMonth] = useState(() => new Date());
   const selectedKey = monthKey(selectedMonth);
 
+  /*Keeps only transactions from a selected month
+    Recalculates the list only when needed for performance*/
   const filteredTransactions = useMemo(() => {
     return transactions.filter((t) => monthKey(new Date(t.date)) === selectedKey);
   }, [transactions, selectedKey]);
 
+  
+  {/* .filter() → “keep items that pass a test” → returns array
+    .reduce() → “combine all items into one value” → returns single value */}
   const totalIncome = filteredTransactions
     .filter((t) => t.type === "income")
     .reduce((sum, t) => sum + (Number(t.amount) || 0), 0);
@@ -89,6 +94,9 @@ export default function HomeScreen() {
       const csv = toCSV(filteredTransactions);
       const fileName = `budgetpal-${selectedKey}.csv`;
       const fileUri = FileSystem.documentDirectory + fileName;
+
+       console.log("FileSystem.EncodingType =", FileSystem.EncodingType);
+
 
       await FileSystem.writeAsStringAsync(fileUri, csv, {
         encoding: FileSystem.EncodingType.UTF8,
@@ -194,19 +202,33 @@ export default function HomeScreen() {
           ${balance}
         </Text>
 
-        <View className="flex-row justify-between mt-3">
+
+                      <View className="flex-row justify-between mt-3">
+            <Text className="text-green-600 font-extrabold text-lg">
+              Total Income: ${totalIncome}
+            </Text>
+          
+            <Text className="text-red-600 font-semibold text-base">
+              Expense: ${totalExpense}
+            </Text>
+          </View>
+
+        {/* <View className="flex-row justify-between mt-3">
           <Text className="text-green-600 font-semibold">
             Income: ${totalIncome}
           </Text>
           <Text className="text-red-600 font-semibold">
             Expense: ${totalExpense}
           </Text>
-        </View>
+        </View> */}
       </View>
 
+
+      {/*//////////////////////////////////////////////////////////////////////////////////////////////////////// */} 
       {/* SpendingSummary component called */}
       <SpendingSummary transactions={filteredTransactions} />
 
+      {/*//////////////////////////////////////////////////////////////////////////////////////////////////////// */} 
       {/* AddTransaction component called */}
       <AddTransaction />
 
