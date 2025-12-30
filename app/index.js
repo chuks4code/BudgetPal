@@ -70,6 +70,15 @@ export default function HomeScreen() {
     .filter((t) => t.type === "expense")
     .reduce((sum, t) => sum + (Number(t.amount) || 0), 0);
 
+    // Current balance = total income - total expense for all transactions
+const currentBalance = transactions
+  .reduce((acc, t) => {
+    if (t.type === "income") return acc + Number(t.amount);
+    if (t.type === "expense") return acc - Number(t.amount);
+    return acc;
+  }, 0);
+
+
   const balance = totalIncome - totalExpense;
 
   function goPrevMonth() {
@@ -203,7 +212,7 @@ export default function HomeScreen() {
         </Text>
 
 
-                      <View className="flex-row justify-between mt-3">
+           <View className="flex-row justify-between mt-3">
             <Text className="text-green-600 font-extrabold text-lg">
               Total Income: ${totalIncome}
             </Text>
@@ -213,14 +222,10 @@ export default function HomeScreen() {
             </Text>
           </View>
 
-        {/* <View className="flex-row justify-between mt-3">
-          <Text className="text-green-600 font-semibold">
-            Income: ${totalIncome}
+           <Text className="mt-3 text-blue-600 font-bold text-lg">
+            Current Balance: ${currentBalance}
           </Text>
-          <Text className="text-red-600 font-semibold">
-            Expense: ${totalExpense}
-          </Text>
-        </View> */}
+
       </View>
 
 
