@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+**BudgetPal** is an offline-first mobile budget tracking app built with **React Native (Expo)**.  
+It allows users to track income and expenses, view monthly summaries, export data, and persist everything locally without requiring an internet connection.
+All data is restored when the app is reopened — no manual save/load logic required.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+---
+ Features
 
-## Get started
+- ➕ Add income and expense transactions
+- 🗑️ Delete transactions with confirmation
+- 💾 Persistent local storage (data survives app restarts)
+- 🌙 Light / Dark theme toggle (persisted)
+- 📊 Monthly spending summary with visual charts
+- 📅 Month-by-month transaction filtering
+- 📤 Export transactions to CSV
+- 📱 Offline-first (no backend required)
+---
 
-1. Install dependencies
+---
+Architecture & State Management
 
-   ```bash
-   npm install
-   ```
+- **Zustand** is used for global state management.
+- **zustand/persist** middleware automatically saves and restores state.
+- **AsyncStorage** is used as the persistence layer.
+- Application state is split into focused stores:
+- `useTransactionStore` → handles transactions
+- `useThemeStore` → handles theme preferences
+---
 
-2. Start the app
 
-   ```bash
-   npx expo start
-   ```
+---
+Project Structure
+app/
+├── index.js # Home screen
+├── transactions.js # Transactions list screen
+└── _layout.js # Tab navigation layout
 
-In the output, you'll find options to open the app in a
+components/
+├── AddTransaction.js
+├── TransactionItem.js
+└── SpendingSummary.js
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+store/
+├── useTransactionStore.js
+└── useThemeStore.js
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+📸 Screenshots
+<img width="555" height="411" alt="image" src="https://github.com/user-attachments/assets/4937a346-4d08-4f3f-9e9d-c16b71741938" />
+<img width="1080" height="2424" alt="Screenshot_20260108_230223" src="https://github.com/user-attachments/assets/8b3db04f-7ebd-497e-8f34-a160e1e54b67" />
+<img width="1080" height="2424" alt="Screenshot_20260108_230243" src="https://github.com/user-attachments/assets/32dd0394-1f0a-4265-a2b9-e1aed1344a17" />
+<img width="1080" height="2424" alt="Screenshot_20260108_230323" src="https://github.com/user-attachments/assets/451160ad-6f83-4b9b-a81a-ee8fd1db12f3" />
+<img width="1080" height="2424" alt="Screenshot_20260108_230406" src="https://github.com/user-attachments/assets/2afd6a9c-608e-4cdb-a218-fa23b7e48095" />
 
-When you're ready, run:
 
-```bash
-npm run reset-project
-```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
