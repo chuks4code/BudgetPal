@@ -44,14 +44,29 @@ store/
 └── useThemeStore.js
 ---
 
----
 
+---
 📸 Screenshots
 <img width="555" height="411" alt="image" src="https://github.com/user-attachments/assets/4937a346-4d08-4f3f-9e9d-c16b71741938" />
 <img width="1080" height="2424" alt="Screenshot_20260108_230223" src="https://github.com/user-attachments/assets/8b3db04f-7ebd-497e-8f34-a160e1e54b67" />
 <img width="1080" height="2424" alt="Screenshot_20260108_230243" src="https://github.com/user-attachments/assets/32dd0394-1f0a-4265-a2b9-e1aed1344a17" />
 <img width="1080" height="2424" alt="Screenshot_20260108_230323" src="https://github.com/user-attachments/assets/451160ad-6f83-4b9b-a81a-ee8fd1db12f3" />
 <img width="1080" height="2424" alt="Screenshot_20260108_230406" src="https://github.com/user-attachments/assets/2afd6a9c-608e-4cdb-a218-fa23b7e48095" />
+---
+
+ 
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/chuks4code/BudgetPal.git
+cd BudgetPal
+
+# Install dependencies
+npm install
+
+# Start Expo
+npx expo start
 
 
 
