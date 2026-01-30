@@ -47,7 +47,11 @@ store/
 
 ---
 📸 Screenshots
-📸 Screenshots
+
+
+https://github.com/user-attachments/assets/be573ac4-df83-4080-9121-95a55252b6bb
+
+
 
 <img src="https://github.com/user-attachments/assets/4937a346-4d08-4f3f-9e9d-c16b71741938" width="300" />
 <img src="https://github.com/user-attachments/assets/8b3db04f-7ebd-497e-8f34-a160e1e54b67" width="200" />
